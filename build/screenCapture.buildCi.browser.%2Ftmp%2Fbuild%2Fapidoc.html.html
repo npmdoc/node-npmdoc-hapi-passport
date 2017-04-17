@@ -1,0 +1,198 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/ikkyotech/hapi-passport">hapi-passport (v0.0.6)</a>
+</h1>
+<h4>Passport Strategy connector to hapi</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hapi-passport">module hapi-passport</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hapi-passport.hapi-passport">
+            function <span class="apidocSignatureSpan"></span>hapi-passport
+            <span class="apidocSignatureSpan">(prototype)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hapi-passport.toString">
+            function <span class="apidocSignatureSpan">hapi-passport.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.hapi-passport.toString">module hapi-passport.toString</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.hapi-passport.toString.toString">
+            function <span class="apidocSignatureSpan">hapi-passport.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hapi-passport" id="apidoc.module.hapi-passport">module hapi-passport</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hapi-passport.hapi-passport" id="apidoc.element.hapi-passport.hapi-passport">
+        function <span class="apidocSignatureSpan"></span>hapi-passport
+        <span class="apidocSignatureSpan">(prototype)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hapiPassport(prototype) {
+    var strategy = Object.create(prototype);
+    return function createPassportLogin(options) {
+
+        if (!options) {
+            options = {};
+        }
+
+        function onFailedRedirect(warning, request, reply) {
+            reply("Login failed, redirecting...", warning).redirect(options.failRedirect);
+            return request;
+        }
+
+        function onErrorRedirect(error, request, reply) {
+            reply("Error while trying to login...", error).redirect(options.errorRedirect);
+            return request;
+        }
+
+        function onSuccessRedirect(info, request, reply) {
+            reply("Login successful, redirecting...", info).redirect(options.successRedirect);
+            return request;
+        }
+
+        def(options, "onFailed",  options.failRedirect    ? onFailedRedirect  : onFailedDefault);
+        def(options, "onError",   options.errorRedirect   ? onErrorRedirect   : onErrorDefault);
+        def(options, "onSuccess", options.successRedirect ? onSuccessRedirect : onSuccessDefault);
+
+        return function processLogin(request, reply, requestOptions) {
+            requestOptions = requestOptions || {};
+
+            strategy.redirect = function (url) {
+                reply().redirect(url);
+            };
+            strategy.fail = function (warning) {
+                options.onFailed(warning, request, reply);
+            };
+            strategy.error = function (error) {
+                options.onError(error, request, reply);
+            };
+            strategy.success = function (info) {
+                options.onSuccess(info, request, reply);
+            };
+            strategy.authenticate({
+                query: request.query,
+		body: request.body || request.payload,
+                session: request.session
+            }, requestOptions);
+        };
+    };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.hapi-passport.toString" id="apidoc.element.hapi-passport.toString">
+        function <span class="apidocSignatureSpan">hapi-passport.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.hapi-passport.toString" id="apidoc.module.hapi-passport.toString">module hapi-passport.toString</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.hapi-passport.toString.toString" id="apidoc.element.hapi-passport.toString.toString">
+        function <span class="apidocSignatureSpan">hapi-passport.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
