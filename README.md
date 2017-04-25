@@ -1,4 +1,7 @@
-# api documentation for  [hapi-passport (v0.0.6)](https://github.com/ikkyotech/hapi-passport)  [![npm package](https://img.shields.io/npm/v/npmdoc-hapi-passport.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hapi-passport) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hapi-passport.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hapi-passport)
+# npmdoc-hapi-passport
+
+#### basic api documentation for  [hapi-passport (v0.0.6)](https://github.com/ikkyotech/hapi-passport)  [![npm package](https://img.shields.io/npm/v/npmdoc-hapi-passport.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-hapi-passport) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-hapi-passport.svg)](https://travis-ci.org/npmdoc/node-npmdoc-hapi-passport)
+
 #### Passport Strategy connector to hapi
 
 [![NPM](https://nodei.co/npm/hapi-passport.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/hapi-passport)
@@ -64,7 +67,8 @@
     "scripts": {
         "test": "lab -r console -t -m 5000"
     },
-    "version": "0.0.6"
+    "version": "0.0.6",
+    "bin": {}
 }
 ```
 
